@@ -11,6 +11,8 @@ export default function ProjectVisual({ kind }: { kind: VisualKind }) {
       return <PantryVisual />;
     case "ocean":
       return <OceanVisual />;
+    case "poker":
+      return <PokerVisual />;
   }
 }
 
@@ -74,6 +76,92 @@ function PantryVisual() {
               <span className="block h-2 w-3/5 rounded-full bg-accent/30" />
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Poker Analyst: felt table with odds readout ---------- */
+
+type PlayingCard = { rank: string; suit: string };
+
+const holeCards: PlayingCard[] = [
+  { rank: "A", suit: "♠" },
+  { rank: "K", suit: "♥" },
+];
+
+const board: (PlayingCard | null)[] = [
+  { rank: "Q", suit: "♥" },
+  { rank: "J", suit: "♣" },
+  { rank: "7", suit: "♦" },
+  null,
+  null,
+];
+
+function Card({
+  card,
+  className = "",
+}: {
+  card: PlayingCard;
+  className?: string;
+}) {
+  const red = card.suit === "♥" || card.suit === "♦";
+  return (
+    <span
+      className={`flex h-14 w-10 flex-col justify-between rounded-md bg-white p-1 font-semibold leading-none shadow-[0_6px_14px_-6px_rgba(0,0,0,0.6)] sm:h-16 sm:w-11 ${red ? "text-[#c0392b]" : "text-[#1b1b1b]"} ${className}`}
+    >
+      <span className="text-xs">{card.rank}</span>
+      <span className="self-center text-lg">{card.suit}</span>
+      <span className="h-2" />
+    </span>
+  );
+}
+
+function PokerVisual() {
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-0 flex flex-col items-center justify-center gap-5 overflow-hidden bg-[radial-gradient(ellipse_at_50%_40%,#1f7a4d,#0f4a2e_60%,#082a1b)] p-5"
+    >
+      {/* board */}
+      <div className="flex gap-1.5 sm:gap-2">
+        {board.map((card, i) =>
+          card ? (
+            <Card key={i} card={card} />
+          ) : (
+            <span
+              key={i}
+              className="h-14 w-10 rounded-md border border-dashed border-white/30 sm:h-16 sm:w-11"
+            />
+          ),
+        )}
+      </div>
+
+      <div className="flex items-end gap-6">
+        {/* hole cards fan out on hover */}
+        <div className="flex">
+          <Card
+            card={holeCards[0]}
+            className="-rotate-6 transition-transform duration-500 group-hover:-translate-y-1 group-hover:-rotate-12"
+          />
+          <Card
+            card={holeCards[1]}
+            className="-ml-3 rotate-6 transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-12"
+          />
+        </div>
+
+        {/* odds readout */}
+        <div className="rounded-lg bg-black/35 px-3 py-2 text-white backdrop-blur-sm">
+          <span className="block text-[10px] uppercase tracking-wider text-white/60">
+            Win
+          </span>
+          <span className="block text-xl font-semibold tabular-nums">
+            48.6%
+          </span>
+          <span className="mt-1 block h-1.5 w-20 overflow-hidden rounded-full bg-white/15">
+            <span className="block h-full w-[48.6%] rounded-full bg-[#facc15]" />
+          </span>
         </div>
       </div>
     </div>

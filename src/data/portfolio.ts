@@ -6,7 +6,7 @@
  * so it's easy to spot what still needs filling in.
  */
 
-export type ProjectVisual = "pantry" | "ocean";
+export type ProjectVisual = "pantry" | "ocean" | "poker";
 
 export type Project = {
   slug: string;
@@ -93,6 +93,25 @@ export const projects: Project[] = [
       demo: "https://pantry-pal-khaki.vercel.app/",
     },
     visual: "pantry",
+  },
+  {
+    slug: "poker-analyst",
+    title: "Poker Analyst",
+    year: "2025",
+    tagline: "Texas Hold'em win-probability calculator",
+    summary:
+      "A browser tool that estimates your chance of winning a hand from your hole cards, the board, and how your opponents play.",
+    highlights: [
+      "Monte Carlo simulation over thousands of deals to estimate win percentage from preflop through the river.",
+      "Full hand evaluator covering every ranking from high card to royal flush, including split pots.",
+      "Ten opponent archetypes, such as tight-aggressive, maniac, and calling station, modeled with VPIP, PFR, and aggression stats that adjust the odds.",
+    ],
+    tech: ["JavaScript", "HTML", "CSS"],
+    links: {
+      repo: "https://github.com/rsg8583-hue/Poker-Analyst",
+      demo: "https://poker-analyst-two.vercel.app/",
+    },
+    visual: "poker",
   },
   {
     slug: "plastic-pollution-simulation",
