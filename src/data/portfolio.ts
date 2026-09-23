@@ -6,7 +6,12 @@
  * so it's easy to spot what still needs filling in.
  */
 
-export type ProjectVisual = "pantry" | "ocean" | "poker" | "calculator";
+export type ProjectVisual =
+  | "pantry"
+  | "ocean"
+  | "poker"
+  | "blackjack"
+  | "calculator";
 
 export type Project = {
   slug: string;
@@ -130,6 +135,25 @@ export const projects: Project[] = [
       demo: "https://rsg8583-hue.github.io/CCLab/miniProject8/",
     },
     visual: "ocean",
+  },
+  {
+    slug: "blackjack",
+    title: "Blackjack",
+    year: "2024",
+    tagline: "Command-line Blackjack in Python, playable on the web",
+    summary:
+      "A terminal Blackjack game against a dealer who hits until 17, drawn with ASCII-art cards. Later rebuilt as a web page so it can be played in the browser.",
+    highlights: [
+      "Aces count as 11 and drop to 1 when a hand would otherwise bust.",
+      "ASCII-art cards in the terminal, with the dealer's hole card shown face down until the player stands.",
+      "Browser version with the same rules, animated card deals, and Hit / Stand / New Game controls.",
+    ],
+    tech: ["Python", "JavaScript", "HTML", "CSS"],
+    links: {
+      repo: "https://github.com/rsg8583-hue/Blackjack",
+      demo: "https://blackjack-alpha-blush.vercel.app",
+    },
+    visual: "blackjack",
   },
   {
     slug: "calculator",

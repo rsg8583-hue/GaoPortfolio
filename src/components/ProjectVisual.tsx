@@ -13,6 +13,8 @@ export default function ProjectVisual({ kind }: { kind: VisualKind }) {
       return <OceanVisual />;
     case "poker":
       return <PokerVisual />;
+    case "blackjack":
+      return <BlackjackVisual />;
     case "calculator":
       return <CalculatorVisual />;
   }
@@ -163,6 +165,82 @@ function PokerVisual() {
           </span>
           <span className="mt-1 block h-1.5 w-20 overflow-hidden rounded-full bg-white/15">
             <span className="block h-full w-[48.6%] rounded-full bg-[#facc15]" />
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Blackjack: dealer and player hands ---------- */
+
+const dealerHand: PlayingCard[] = [{ rank: "9", suit: "♣" }];
+
+const playerHand: PlayingCard[] = [
+  { rank: "A", suit: "♦" },
+  { rank: "7", suit: "♠" },
+  { rank: "3", suit: "♥" },
+];
+
+function CardBack() {
+  return (
+    <span className="h-14 w-10 rounded-md border-[3px] border-white bg-[repeating-linear-gradient(45deg,#7b1e1e_0_4px,#9b2c2c_4px_8px)] shadow-[0_6px_14px_-6px_rgba(0,0,0,0.6)] sm:h-16 sm:w-11" />
+  );
+}
+
+function ScoreBadge({ value }: { value: number }) {
+  return (
+    <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-semibold tabular-nums text-accent-ink">
+      {value}
+    </span>
+  );
+}
+
+function BlackjackVisual() {
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_20%_80%,var(--accent-soft),transparent_60%)] p-5 sm:p-8"
+    >
+      <div className="flex w-full max-w-xs flex-col gap-4 rounded-2xl border border-line bg-surface p-4 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)]">
+        {/* dealer: one card up, hole card down */}
+        <div className="flex items-center justify-between">
+          <div className="flex gap-1.5">
+            {dealerHand.map((card, i) => (
+              <Card key={i} card={card} />
+            ))}
+            <CardBack />
+          </div>
+          <span className="flex items-center gap-2 text-xs font-medium text-muted">
+            Dealer <ScoreBadge value={9} />
+          </span>
+        </div>
+
+        <span className="h-px bg-line" />
+
+        {/* player: soft 21, cards spread on hover */}
+        <div className="flex items-center justify-between">
+          <div className="flex">
+            {playerHand.map((card, i) => (
+              <Card
+                key={i}
+                card={card}
+                className={`transition-all duration-500 ${i > 0 ? "-ml-4 group-hover:ml-1.5" : ""} group-hover:-translate-y-1`}
+              />
+            ))}
+          </div>
+          <span className="flex items-center gap-2 text-xs font-medium text-muted">
+            Player <ScoreBadge value={21} />
+          </span>
+        </div>
+
+        {/* controls */}
+        <div className="flex gap-1.5">
+          <span className="flex h-7 flex-1 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-ink">
+            Hit
+          </span>
+          <span className="flex h-7 flex-1 items-center justify-center rounded-full bg-surface-2 text-xs font-semibold text-ink">
+            Stand
           </span>
         </div>
       </div>
