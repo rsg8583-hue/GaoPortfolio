@@ -13,6 +13,8 @@ export default function ProjectVisual({ kind }: { kind: VisualKind }) {
       return <OceanVisual />;
     case "poker":
       return <PokerVisual />;
+    case "calculator":
+      return <CalculatorVisual />;
   }
 }
 
@@ -163,6 +165,63 @@ function PokerVisual() {
             <span className="block h-full w-[48.6%] rounded-full bg-[#facc15]" />
           </span>
         </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Calculator: keypad with display ---------- */
+
+// Same button order as Calculator.py
+const calcKeys = [
+  "1",
+  "2",
+  "3",
+  "+",
+  "4",
+  "5",
+  "6",
+  "−",
+  "7",
+  "8",
+  "9",
+  ".",
+  "0",
+  "×",
+  "÷",
+  "=",
+];
+
+function CalculatorVisual() {
+  return (
+    <div
+      aria-hidden
+      className="absolute inset-0 flex items-center justify-center bg-[radial-gradient(circle_at_80%_80%,var(--accent-soft),transparent_60%)] p-5 sm:p-8"
+    >
+      <div className="w-full max-w-[15rem] rounded-2xl border border-line bg-surface p-3 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-[0.8deg]">
+        {/* display */}
+        <div className="mb-2.5 flex h-14 flex-col items-end justify-center rounded-lg bg-ink px-3 font-mono leading-tight text-surface">
+          <span className="text-[10px] text-surface/60">12×7+0.5</span>
+          <span className="text-xl tabular-nums">84.5</span>
+        </div>
+        {/* keypad */}
+        <div className="grid grid-cols-4 gap-1.5">
+          {calcKeys.map((key) => {
+            const op = "+−×÷".includes(key);
+            const eq = key === "=";
+            return (
+              <span
+                key={key}
+                className={`flex h-8 items-center justify-center rounded-md text-sm font-medium ${eq ? "bg-accent text-accent-ink" : op ? "bg-accent-soft text-accent" : "bg-surface-2 text-ink"}`}
+              >
+                {key}
+              </span>
+            );
+          })}
+        </div>
+        <span className="mt-1.5 flex h-7 items-center justify-center rounded-md bg-surface-2 text-xs font-medium text-muted">
+          Clear
+        </span>
       </div>
     </div>
   );

@@ -74,7 +74,8 @@ to switch back.
 ## Adding a project
 
 Copy one of the objects in the `projects` array and edit it. The `visual`
-field must be `"pantry"`, `"ocean"`, or `"poker"` (the CSS art styles).
+field must be `"pantry"`, `"ocean"`, `"poker"`, or `"calculator"` (the CSS art
+styles).
 For a new project, add an `image` screenshot, or reuse a visual until you have one.
 
 ## Design notes

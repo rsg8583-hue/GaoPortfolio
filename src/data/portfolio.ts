@@ -6,7 +6,7 @@
  * so it's easy to spot what still needs filling in.
  */
 
-export type ProjectVisual = "pantry" | "ocean" | "poker";
+export type ProjectVisual = "pantry" | "ocean" | "poker" | "calculator";
 
 export type Project = {
   slug: string;
@@ -130,6 +130,24 @@ export const projects: Project[] = [
       demo: "https://rsg8583-hue.github.io/CCLab/miniProject8/",
     },
     visual: "ocean",
+  },
+  {
+    slug: "calculator",
+    title: "Calculator",
+    year: "2023",
+    tagline: "Four-function calculator in Python and Kivy",
+    summary:
+      "A small desktop calculator built with the Kivy UI framework, later recreated as a web page so it can be tried in the browser.",
+    highlights: [
+      "Kivy layout of a display, a 4×4 button grid, and a Clear button, all wired to event callbacks.",
+      "Browser version with the same key layout, keyboard input, and a small recursive-descent parser in place of Python's eval.",
+    ],
+    tech: ["Python", "Kivy", "JavaScript", "HTML", "CSS"],
+    links: {
+      repo: "https://github.com/rsg8583-hue/Calculator",
+      demo: "https://calculator-nine-silk-71.vercel.app",
+    },
+    visual: "calculator",
   },
 ];
 
