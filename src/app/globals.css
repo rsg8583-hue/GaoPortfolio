@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/* ---------- Color tokens ---------- */
+:root {
+  --paper: #f6f4ef;
+  --surface: #fffdf9;
+  --surface-2: #ece8df;
+  --ink: #17171b;
+  --muted: #5b5954;
+  --line: #ddd8cd;
+  --accent: #c2410c;
+  --accent-ink: #ffffff;
+  --accent-soft: #f8e2d6;
+  --good: #3f7d4e;
+  --warn: #c98a12;
+  --bad: #c2412e;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #111113;
+    --surface: #18181b;
+    --surface-2: #222226;
+    --ink: #f1efe9;
+    --muted: #a6a39c;
+    --line: #2e2e33;
+    --accent: #ff8a5c;
+    --accent-ink: #1b0c05;
+    --accent-soft: #3a1d12;
+    --good: #6fbf82;
+    --warn: #e6b04a;
+    --bad: #ef7461;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument-serif);
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ---------- Scroll reveal (progressive enhancement, no JS) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+
+@media print {
+  .reveal {
+    animation: none !important;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Project visuals ---------- */
+
+/* Ocean: plastic pieces drift down and settle */
+.plastic {
+  animation: drift var(--dur, 9s) ease-in-out var(--delay, 0s) infinite;
+}
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(var(--sway, 10px), calc(var(--fall, 120px) * 0.5))
+      rotate(90deg);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, var(--fall, 120px)) rotate(180deg);
+    opacity: 0;
+  }
+}
+.wave {
+  animation: wave 8s linear infinite;
+}
+@keyframes wave {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pantry: recommendation card gently glows */
+.spark {
+  animation: spark 2.8s ease-in-out infinite;
+}
+@keyframes spark {
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85) rotate(20deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .plastic {
+    animation: none;
+    transform: translateY(calc(var(--fall, 120px) * 0.5));
+  }
+  .wave,
+  .spark {
+    animation: none;
+  }
+}
