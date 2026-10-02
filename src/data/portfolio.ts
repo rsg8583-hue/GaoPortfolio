@@ -131,7 +131,7 @@ export const projects: Project[] = [
     ],
     tech: ["p5.js", "JavaScript", "HTML", "CSS"],
     links: {
-      repo: "",
+      repo: "https://github.com/rsg8583-hue/CCLab/tree/main/miniProject8",
       demo: "https://rsg8583-hue.github.io/CCLab/miniProject8/",
     },
     visual: "ocean",
