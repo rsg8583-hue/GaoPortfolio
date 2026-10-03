@@ -102,7 +102,7 @@ export const projects: Project[] = [
   {
     slug: "poker-analyst",
     title: "Poker Analyst",
-    year: "2025",
+    year: "2026",
     tagline: "Texas Hold'em win-probability calculator",
     summary:
       "A browser tool that estimates your chance of winning a hand from your hole cards, the board, and how your opponents play.",
@@ -139,7 +139,7 @@ export const projects: Project[] = [
   {
     slug: "blackjack",
     title: "Blackjack",
-    year: "2024",
+    year: "2026",
     tagline: "Command-line Blackjack in Python, playable on the web",
     summary:
       "A terminal Blackjack game against a dealer who hits until 17, drawn with ASCII-art cards. Later rebuilt as a web page so it can be played in the browser.",
@@ -158,7 +158,7 @@ export const projects: Project[] = [
   {
     slug: "calculator",
     title: "Calculator",
-    year: "2023",
+    year: "2026",
     tagline: "Four-function calculator in Python and Kivy",
     summary:
       "A small desktop calculator built with the Kivy UI framework, later recreated as a web page so it can be tried in the browser.",
